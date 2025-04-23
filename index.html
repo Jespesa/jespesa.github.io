@@ -3,78 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robot Framework Test Results</title>
+    <title>Robot Framework Testing Results</title>
     <style>
+        :root {
+            --primary-color: #6a5acd;
+            --secondary-color: #483d8b;
+            --background-color: #f8f8ff;
+            --section-bg: #ffffff;
+            --text-color: #333366;
+            --link-color: #4169e1;
+            --link-hover: #8a2be2;
+            --border-color: #e6e6fa;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 1000px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
-            text-align: center;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
         }
         
-        h2 {
-            color: #2979ff;
-            border-left: 4px solid #2979ff;
-            padding-left: 10px;
-            margin-top: 40px;
+        .result-container {
+            margin-bottom: 50px;
+            background-color: var(--section-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
         
-        a {
-            color: #2979ff;
+        .section-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-header::before {
+            content: "🤖";
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .file-list {
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .file-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .file-list li:hover {
+            background-color: #f0f0ff;
+            transform: translateX(5px);
+        }
+        
+        .file-list a {
+            color: var(--link-color);
             text-decoration: none;
             display: block;
-            padding: 5px 0;
+            padding: 5px;
+            position: relative;
+            padding-left: 25px;
+            font-weight: 500;
         }
         
-        a:hover {
+        .file-list a:hover {
+            color: var(--link-hover);
+        }
+        
+        .file-list a::before {
+            content: "📄";
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+        
+        .project-info {
+            background-color: var(--section-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .project-info h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .project-info a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .project-info a:hover {
             text-decoration: underline;
+            color: var(--link-hover);
         }
         
-        .section {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        
-        .view-options {
-            font-size: 0.9em;
-            margin-top: 10px;
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
             color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
-    <h1>Robot Framework Test Results</h1>
-    
-    <div class="section">
-        <h2>Logs</h2>
-        <div id="logs-section">
-            <a href="https://jespesa.github.io/outputs/logs/log.html">log.html</a>
-        </div>
-    </div>
-    
-    <div class="section">
-        <h2>Reports</h2>
-        <div id="reports-section">
-            <a href="https://jespesa.github.io/outputs/reports/report.html">report.html</a>
-        </div>
+    <header>
+        <h1>Robot Framework Test Results</h1>
+    </header>
+
+    <div class="result-container">
+        <h2 class="section-header">Test Logs</h2>
+        <ul class="file-list">
+            <li><a href="outputs/logs/backend_test_log.html">Backend Test Log</a></li>
+            <li><a href="outputs/logs/crypted_login_log.html">Encrypted Login Test Log</a></li>
+            <li><a href="outputs/logs/env_login_log.html">Environment Login Test Log</a></li>
+            <li><a href="outputs/logs/login_log.html">Standard Login Test Log</a></li>
+            <li><a href="outputs/logs/webform_log.html">Web Form Test Log</a></li>
+        </ul>
     </div>
 
-    <div class="section">
+    <div class="result-container">
+        <h2 class="section-header">Test Reports</h2>
+        <ul class="file-list">
+            <li><a href="outputs/reports/backend_test_report.html">Backend Test Report</a></li>
+            <li><a href="outputs/reports/crypted_login_report.html">Encrypted Login Test Report</a></li>
+            <li><a href="outputs/reports/env_login_report.html">Environment Login Test Report</a></li>
+            <li><a href="outputs/reports/login_report.html">Standard Login Test Report</a></li>
+            <li><a href="outputs/reports/webform_report.html">Web Form Test Report</a></li>
+        </ul>
+    </div>
+
+    <div class="project-info">
         <h2>TerveysPlus-projekti</h2>
         <p>TerveysPlus on kokonaisvaltainen terveydenseurantasovellus, joka mahdollistaa erilaisten hyvinvointiin liittyvien asioiden kuten päivittäisen mielialan, painon, unirytmin, lääkitysten ja liikunta-aktiviteettien seurannan.</p>
         <p>Tämä sivu näyttää TerveysPlus-sovelluksen Robot Framework -testien tulokset.</p>
         <p>Tutustu projektiin tarkemmin <a href="https://github.com/Jespesa/hyte-backend-exercises" target="_blank">GitHub-repositoriossa</a>.</p>
     </div>
+
+    <footer>
+        <p>© 2025 TerveysPlus Robot Framework Testing</p>
+    </footer>
 </body>
 </html>
